@@ -2,7 +2,7 @@
 console.log("working");
 
 // Create the map object with a center and zoom level.
-let map = L.map('mapid').setView([34.0522, -118.2437], 14);
+let map = L.map('mapid').setView([40.7, -94.5], 4);
 
 
 // An alternative way to create the map object with a center and zoom level.
@@ -15,8 +15,34 @@ let map = L.map('mapid').setView([34.0522, -118.2437], 14);
 //   });
 
 
-// // Add a marker to the map for Los Angeles, California.
-// let marker = L.marker([34.0522, -118.2437]).addTo(map);
+// Get the data from cities.js
+let cityData = cities;
+
+//   Loop through the cities array and create one marker for each city.
+// cityData.forEach(function(city) {
+//     console.log(city)
+//     L.circleMarker(city.location, {
+//         radius: city.population/100000
+//     })
+//     .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population " + city.population.toLocaleString() + "</h3>")
+//     .addTo(map);
+// });
+
+
+// Edit the logic.js file to create an orange circle popup marker for each city, with a lineweight of 4, 
+// a radius where the population number is decreased by 200,000,  that's on a dark map. When you click 
+// on the circle, the popup should display the city, state, and the population formatted with a thousands separator.
+cityData.forEach(function(city) {
+    console.log(city)
+    L.circleMarker(city.location, {
+        radius: city.population/200000,
+        color: 'orange'
+        // fillColor:
+    })
+    .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population " + city.population.toLocaleString() + "</h3>")
+    .addTo(map);
+});
+
 
 // To add a point or dot to a map
 // let circle = L.circle([34.0522, -118.2437], {
@@ -25,11 +51,11 @@ let map = L.map('mapid').setView([34.0522, -118.2437], 14);
 
 // Skill Drill Using the Leaflet documentation, create a light-yellow 
 // circle with black lines indicating a 300-meter radius of Central Los Angeles on a dark map.
-let circle = L.circleMarker([34.0522, -118.2437], {
-    color: 'black',
-    fillColor: '#ffffa1',
-    radius: 300
-}).addTo(map);
+// let circle = L.circleMarker([34.0522, -118.2437], {
+//     color: 'black',
+//     fillColor: '#ffffa1',
+//     radius: 300
+// }).addTo(map);
 
 
 
