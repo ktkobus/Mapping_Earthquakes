@@ -2,8 +2,24 @@
 console.log("working");
 
 // Create the map object with a center and zoom level.
-let map = L.map('mapid').setView([40.7, -94.5], 4);
+let map = L.map('mapid').setView([39.0997, -94.5786], 4);
 
+// Coordinates for each point to be used in the line.
+let line = [
+    [37.6214, -122.3790],
+    [30.1975, -97.6664],
+    [43.6777, -79.6248],
+    [40.6413, -74.7781]
+  ];
+
+  // Create a polyline using the line coordinates and make the line red.
+L.polyline(line, {
+    color: "blue",
+    weight: 4,
+    opacity: .5,
+    dashArray: '1,5'
+
+  }).addTo(map);
 
 // An alternative way to create the map object with a center and zoom level.
 // Useful when need to add multiple tile layers, or a background image of maps
@@ -32,16 +48,16 @@ let cityData = cities;
 // Edit the logic.js file to create an orange circle popup marker for each city, with a lineweight of 4, 
 // a radius where the population number is decreased by 200,000,  that's on a dark map. When you click 
 // on the circle, the popup should display the city, state, and the population formatted with a thousands separator.
-cityData.forEach(function(city) {
-    console.log(city)
-    L.circleMarker(city.location, {
-        radius: city.population/200000,
-        color: 'orange'
-        // fillColor:
-    })
-    .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population " + city.population.toLocaleString() + "</h3>")
-    .addTo(map);
-});
+// cityData.forEach(function(city) {
+//     console.log(city)
+//     L.circleMarker(city.location, {
+//         radius: city.population/200000,
+//         color: 'orange'
+//         // fillColor:
+//     })
+//     .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population " + city.population.toLocaleString() + "</h3>")
+//     .addTo(map);
+// });
 
 
 // To add a point or dot to a map
@@ -60,7 +76,7 @@ cityData.forEach(function(city) {
 
 
 // Dark map setting
-let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
     accessToken: API_KEY
